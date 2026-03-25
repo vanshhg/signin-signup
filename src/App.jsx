@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import LoginSignup from "./Components/LoginSignup.jsx";
 
 function App() {
   return(
     <div>
-      
+      <LoginSignup/>
     </div>
   );
 }
