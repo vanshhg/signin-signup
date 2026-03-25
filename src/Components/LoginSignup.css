@@ -103,3 +103,11 @@
     color: #676767;
 }
 
+
+
+.submit-container1 {
+    display: flex;
+    gap: 20px;
+    margin: 20px auto;
+    margin-top: 25px;
+}
