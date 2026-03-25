@@ -1,12 +1,15 @@
 import React, { useState } from "react"
 import "./LoginSignup.css"; 
 
+import ForgetPassword from "./ForgetPassword";
+
 import user_icon from "../assets/person.png"
 import password_icon from "../assets/password.png"
 import email_icon from "../assets/email.png"
 
 const LoginSignup = () => {
     const [action, setAction] = useState("Sign Up")
+    const [currentpage, setCurrentPage] = useState("auth")
 
     function state(){
         if( action === "Sign Up"){
@@ -14,6 +17,10 @@ const LoginSignup = () => {
         }else{
             setAction("Sign Up")
         }
+    }
+
+    if(currentpage === "forgetPassword"){
+        return <ForgetPassword goBack={() => setCurrentPage("auth")}/>
     }
 
     return(
@@ -27,17 +34,18 @@ const LoginSignup = () => {
             <div className="inputs">
                 {action === "Login"? <div></div> : <div className="input">
                     <img src={user_icon} />
-                    <input type="text" placeholder="Name"/>
+                    <input key={`name-${action}`} type="text" placeholder="Name"/>
                 </div>}
                 <div className="input">
                     <img src={email_icon} />
-                    <input type="email" placeholder="Email" />
+                    <input key={`email-${action}`} type="email" placeholder="Email" />
                 </div>
                 <div className="input">
                     <img src={password_icon} />
-                    <input type="password" placeholder="Password"/>
+                    <input key={`password-${action}`} type="password" placeholder="Password"/>
                 </div>
-                {action === "Sign Up"? <div></div>:<div className="forgot"><span>Forgot Password?</span></div>}
+                {action === "Sign Up"? <div></div>:
+                <div className="forgot" ><span onClick={() => setCurrentPage("forgetPassword")}>Forgot Password?</span></div>}
                 <div className="submit-container">
                     <div className={action === "Login"? "submit gray": "submit"} onClick={state}>Sign Up</div>
                     <div className={action === "Sign Up"? "submit gray": "submit"} onClick={state}>Login</div>
